@@ -47,7 +47,7 @@ public class MainFrame
     JButton but2 = new JButton();
     JButton but3 = new JButton();
     JButton but4 = new JButton();
-    JButton logButt = new JButton("Show Log");
+    JButton logButt = new JButton("Update Log");
 
     Burger burgeq = new Burger();
     Water ayaq = new Water();
