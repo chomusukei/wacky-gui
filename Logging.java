@@ -51,20 +51,23 @@ public class Logging
         fw.close();
     }
     
-    public void readLog() throws Exception
+    public String readLog() throws Exception
     {
         String line = null;
+        String length = "";
         
         FileReader fileReader = new FileReader(log);
 
         // Always wrap FileReader in BufferedReader.
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        while((line = bufferedReader.readLine()) != null) {
-            System.out.println(line);
+        while((line = bufferedReader.readLine()) != null) 
+        {
+            length = length + line + newLine;
         }   
 
         // Always close files.
-        bufferedReader.close();    
+        bufferedReader.close();
+        return length;
     }
 }
