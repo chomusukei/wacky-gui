@@ -181,6 +181,7 @@ public class MainFrame
                 choices = 2;
                 try {
                     burgeq.burger(choices);
+                    logText.setText(logt.readLog());
                 } catch (Exception ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -198,6 +199,7 @@ public class MainFrame
                 choices = 1;
                 try {
                     burgeq.burger(choices);
+                    logText.setText(logt.readLog());
                 } catch (Exception ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -217,6 +219,7 @@ public class MainFrame
                 choices = 1;
                 try {
                   ayaq.water(choices);
+                  logText.setText(logt.readLog());
                 } catch (Exception ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -256,6 +259,7 @@ public class MainFrame
                 choices = 2;
                 try {
                     ayaq.water(choices);
+                    logText.setText(logt.readLog());
                 } catch (Exception ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
