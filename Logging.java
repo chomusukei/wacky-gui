@@ -10,27 +10,39 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.io.FileNotFoundException;
 
 public class Logging
 {
-    public File log = new File("Log.txt");
-    private static final String newLine = System.getProperty("line.separator");
-    String burger;
-    String water;
+    /*
+      Create object for class File.
+      The file is then named as Log.txt.
+    */
+    public File log = new File("Log.txt"); 
+    
+    private static final String newLine = System.getProperty("line.separator"); //Create a new line when called. same as \n
+    String burger; //Create variable burger
+    String water; // Create variable water
     
     public Logging()
     {
-        burger = "";
-        water = "";
+        burger = ""; //Initialise it as empty string
+        water = ""; //Initialise it as empty string
     }
     
-    //Log for if customer order burgera
+    //Log for if customer order burger
     public void writeFile(String burger) throws Exception
     {              
-        GregorianCalendar cal = new GregorianCalendar();
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        Date date = new Date();
-        FileWriter fw = new FileWriter("Log.txt",true);
+        GregorianCalendar cal = new GregorianCalendar(); //Create object for class GregorianCalendar
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss"); //Create object for class SimpleDateFormat
+        Date date = new Date(); //Create object for Date.
+        FileWriter fw = new FileWriter("Log.txt",true); //Create object for class FileWriter.
+        /*
+            FileWriter is used to write characters to a file.
+            FileWriter works much like the FileOutPutStream except that a
+            FileOutPutStream is byte based, whereas FileWriter is character
+            based. Simply put, FileWriter is intended to write text.
+        */
         
         fw.write((cal.get(Calendar.MONTH)+1)+"/"+ cal.get(Calendar.DATE)+ "/" + cal.get(Calendar.YEAR)+ " "
                 + df.format(date) + " " + burger + newLine);
@@ -55,19 +67,35 @@ public class Logging
     {
         String line = null;
         String length = "";
-        
-        FileReader fileReader = new FileReader(log);
+        try
+        {           
+            FileReader fileReader = new FileReader(log);
+            /*
+                Created an object for class FileReader.
+                FileReader read file from "log" which is the object of File created
+                earlier. 
+            */
 
-        // Always wrap FileReader in BufferedReader.
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
+            /* 
+                Always wrap FileReader in BufferedReader.
+                Wrapping a BufferedReader around a FileReader prevents reading of 
+                data from the file over and over again. BufferedReader buffers the 
+                input.
+            */
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        while((line = bufferedReader.readLine()) != null) 
+            while((line = bufferedReader.readLine()) != null) 
+            {
+                length = length + line + newLine;
+            }   
+
+            // Always close files.
+            bufferedReader.close();
+        }
+        catch(FileNotFoundException fnf)
         {
-            length = length + line + newLine;
-        }   
-
-        // Always close files.
-        bufferedReader.close();
+           File test = new File("Log.txt");
+        }
         return length;
     }
 }
