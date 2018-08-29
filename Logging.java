@@ -98,4 +98,8 @@ public class Logging
         }
         return length;
     }
+    
+    public void deleteLog(){
+        log.delete();
+    }
 }
